@@ -8,8 +8,8 @@
 
   <br/>
 
+  <table class="table">
   <% @documents.group_by(&:document_type).each do |group, documents| %>
-    <table class="table">
       <tr>
         <th><%= group %></th>
         <th></th>
@@ -24,6 +24,6 @@
         <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' %></td>
       </tr>
     <% end %>
-    </table>
   <% end %>
+  </table>
 </div>
