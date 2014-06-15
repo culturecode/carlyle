@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615172954) do
+ActiveRecord::Schema.define(version: 20140615192222) do
 
   create_table "documents", force: true do |t|
     t.string   "document_type"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20140615172954) do
     t.datetime "updated_at"
     t.string   "name"
     t.text     "description"
+    t.date     "date"
   end
+
+  add_index "documents", ["date"], name: "index_documents_on_date"
 
 end

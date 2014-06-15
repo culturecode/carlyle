@@ -3,7 +3,7 @@ module Admin
     respond_to :html
 
     def index
-      @documents = Document.order('id DESC')
+      @documents = Document.order('date DESC')
     end
 
     def new
@@ -34,7 +34,7 @@ module Admin
     private
 
     def document_params
-      params.require(:document).permit(:attachment, :document_type, :name, :description)
+      params.require(:document).permit(:attachment, :document_type, :name, :description, :date)
     end
   end
 end
