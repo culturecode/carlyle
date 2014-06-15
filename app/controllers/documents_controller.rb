@@ -8,4 +8,8 @@ class DocumentsController < ApplicationController
     @notices = Document.notice.order('date DESC')
     @forms = Document.form.order('date DESC')
   end
+
+  def show
+    redirect_to Document.find(params[:id]).attachment.url
+  end
 end
