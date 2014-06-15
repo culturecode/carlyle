@@ -1,9 +1,12 @@
 <ol class='unstyled'>
-<% documents.each do |document| %>
-<li>
-  <%= link_to document.name, document %>
-  <span class='list_date'><%= document.date %></span>
-  <%= simple_format document.description if document.description? %>
-</li>
+<% documents.group_by{|d| d.date.year}.each do |year, docs| %>
+<strong><%= year %></strong>
+  <% docs.each do |document| %>
+  <li>
+    <span class='list_date'><%= document.date.strftime('%b %e') %></span>
+    <%= link_to document.name, document %>
+    <%= simple_format document.description if document.description? %>
+  </li>
+  <% end %>
 <% end %>
 </ol>
