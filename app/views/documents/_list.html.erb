@@ -1,0 +1,8 @@
+<ol class='unstyled'>
+  <% documents.each do |document| %>
+  <li>
+    <%= link_to document.name, document %>
+    <%= simple_format document.description if document.description? %>
+  </li>
+  <% end %>
+</ol>
