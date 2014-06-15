@@ -1,0 +1,10 @@
+ol, ul{
+  &.unstyled {
+    list-style: none;
+    padding-left: 0px;
+  }
+
+  .list_date{
+    color: #888;
+  }
+}

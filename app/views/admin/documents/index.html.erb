@@ -1,0 +1,29 @@
+
+<div class="container">
+  <div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+      <%= link_to 'Upload Document', [:new, :admin, :document], :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+  <br/>
+
+  <% @documents.group_by(&:document_type).each do |group, documents| %>
+    <table class="table">
+      <tr>
+        <th><%= group %></th>
+        <th></th>
+        <th>Date Uploaded</th>
+        <th></th>
+      </tr>
+    <% documents.each do |document| %>
+      <tr>
+        <td><%= link_to document.name, [:edit, :admin, document] %></td>
+        <td><%= document.description %></td>
+        <td><%= document.created_at.to_s(:long) %></td>
+        <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+</div>

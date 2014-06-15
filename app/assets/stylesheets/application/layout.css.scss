@@ -1,0 +1,48 @@
+@import "mixins";
+
+.banner{
+  background-color: $theme-color + #111111;
+  background-image: linear-gradient(to bottom, $theme-color 0px, ($theme-color + #1A171C) 100%);
+  background-repeat: repeat-x;
+  color: $theme-color + #777;
+  padding: 30px 15px;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  text-align: left;
+
+  h1{
+    font-size: 60px;
+    line-height: 1;
+    color: white;
+    margin-top: 0;
+  }
+
+  p{
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+}
+
+#site_header{
+  margin-bottom: 0;
+}
+
+#site_footer{
+  border-top: 1px solid #E0E0E0;
+  text-align: center;
+  margin-top: 30px;
+  padding: 30px 15px;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -15px;
+}
+
+.navbar-brand, .navbar-nav > li > a {
+    color: $theme-color;
+    font-weight: 500;
+}

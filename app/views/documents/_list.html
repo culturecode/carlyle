@@ -1,0 +1,9 @@
+<ol class='unstyled'>
+<% documents.each do |document| %>
+<li>
+  <%= link_to document.name, document %>
+  <span class='list_date'><%= document.created_at.to_date.to_s(:long) %></span>
+  <%= simple_format document.description if document.description? %>
+</li>
+<% end %>
+</ol>
