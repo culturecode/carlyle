@@ -1,5 +1,9 @@
 @import "mixins";
 
+html{
+  min-width: 400px;
+}
+
 #site_header{
   margin-bottom: 0;
   border-bottom: none;
