@@ -7,23 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header id="site_header" class="navbar navbar-static-top">
+
+<nav id="site_header" class="navbar" role="navigation">
   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="../">The Carlyle</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">The Carlyle</a>
     </div>
-    <nav role="navigation" class="">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Gallery</a></li>
+        <li><a href="">Gallery</a></li>
         <li><a href="">Floorplans</a></li>
         <li><a href="">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Owners', documents_path %></li>
+        <%= content_tag :li, link_to('Owners', documents_path), :class => ('active' if params[:controller] == 'documents') %></li>
       </ul>
-    </nav>
-  </div>
-</header>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 
 <% if content_for?(:page_banner) %>
 <div class="banner">

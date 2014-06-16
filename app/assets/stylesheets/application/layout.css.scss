@@ -1,5 +1,33 @@
 @import "mixins";
 
+#site_header{
+  margin-bottom: 0;
+  border-bottom: none;
+  background: white;
+
+
+  .navbar-brand, .navbar-nav > li > a {
+      color: $theme-color;
+      font-weight: 500;
+  }
+  .navbar-toggle .icon-bar{
+    background-color: $theme-color;
+  }
+
+  .nav > li > a:hover, .nav > li > a:focus, .nav > li.active > a {
+    background-color: #F9F9F9;
+    color: $theme-color - #111;
+  }
+
+}
+
+#site_footer{
+  border-top: 1px solid #E0E0E0;
+  text-align: center;
+  margin-top: 30px;
+  padding: 30px 15px;
+}
+
 .banner{
   background-color: $theme-color + #111111;
   background-image: linear-gradient(to bottom, $theme-color 0px, ($theme-color + #1A171C) 100%);
@@ -25,24 +53,4 @@
     line-height: 1.4;
     margin-bottom: 0;
   }
-}
-
-#site_header{
-  margin-bottom: 0;
-}
-
-#site_footer{
-  border-top: 1px solid #E0E0E0;
-  text-align: center;
-  margin-top: 30px;
-  padding: 30px 15px;
-}
-
-.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
-}
-
-.navbar-brand, .navbar-nav > li > a {
-    color: $theme-color;
-    font-weight: 500;
 }
