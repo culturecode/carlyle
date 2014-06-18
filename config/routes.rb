@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :documents
   end
 
+  get 'gallery' => 'pages#gallery', :as => :gallery
+  get 'floorplans' => 'pages#floorplans', :as => :floorplans
+  get 'contact' => 'pages#contact', :as => :contact
+
   get 'pages/:action', :controller => :pages
 end

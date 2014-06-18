@@ -38,9 +38,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="">Gallery</a></li>
-        <li><a href="">Floorplans</a></li>
-        <li><a href="">Contact</a></li>
+        <li><%= link_to 'Gallery', gallery_path %></li>
+        <li><%= link_to 'Floorplans', floorplans_path %></li>
+        <li><%= link_to 'Contact', contact_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <%= content_tag :li, link_to('Owners', documents_path), :class => ('active' if params[:controller] == 'documents') %></li>
@@ -62,7 +62,11 @@
 
 <footer id="site_footer">
   <div class="container">
-    <%= link_to 'Built by Culture Code', 'http://www.culturecode.ca' %>
+    <strong>The Carlyle</strong></br> 1060 Alberni Street, Vancouver, BC, V6E4K2
+
+    <br/>
+
+    Website built by the fine folks at <%= link_to 'Culture Code', 'http://www.culturecode.ca' %>
   </div>
 </footer>
 </body>

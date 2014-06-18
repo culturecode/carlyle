@@ -6,8 +6,6 @@
     </div>
   </div>
 
-  <br/>
-
   <table class="table">
   <% @documents.group_by(&:document_type).each do |group, documents| %>
       <tr>

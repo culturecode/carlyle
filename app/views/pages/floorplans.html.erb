@@ -1,0 +1,35 @@
+<% content_for :page_banner do %>
+  <h1>Floorplans</h1>
+  <p>Sensible layouts for every unit</p>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+        <%= link_to asset_path('floorplans/studio.jpg'), :class => 'thumbnail', :target => '_blank' do %>
+          <%= image_tag('floorplans/studio.jpg') %>
+        <% end %>
+        <div class="external_caption">Studio</div>
+    </div>
+    <div class="col-xs-6">
+        <%= link_to asset_path('floorplans/onebedroom.jpg'), :class => 'thumbnail', :target => '_blank' do %>
+          <%= image_tag('floorplans/onebedroom.jpg') %>
+        <% end %>
+        <div class="external_caption">One Bedroom</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+        <%= link_to asset_path('floorplans/onebedroomden.jpg'), :class => 'thumbnail', :target => '_blank' do %>
+          <%= image_tag('floorplans/onebedroomden.jpg') %>
+        <% end %>
+        <div class="external_caption">One Bedroom + Den</div>
+    </div>
+    <div class="col-xs-6">
+        <%= link_to asset_path('floorplans/twobedroom.jpg'), :class => 'thumbnail', :target => '_blank' do %>
+          <%= image_tag('floorplans/twobedroom.jpg') %>
+        <% end %>
+        <div class="external_caption">Two Bedroom</div>
+    </div>
+  </div>
+</div>
