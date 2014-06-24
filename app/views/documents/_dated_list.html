@@ -4,7 +4,7 @@
   <% docs.each do |document| %>
   <li>
     <span class='list_date'><%= document.date.strftime('%b %e') %></span>
-    <%= link_to document.name, document %>
+    <%= link_to document.name, document, :target => '_blank' %>
     <%= simple_format document.description if document.description? %>
   </li>
   <% end %>
