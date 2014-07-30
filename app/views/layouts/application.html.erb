@@ -43,12 +43,12 @@
         <li><%= link_to 'Contact', contact_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <%= content_tag :li, link_to('Owners', documents_path), :class => ('active' if params[:controller] == 'documents') %></li>
+        <%= content_tag :li, link_to('Owners', documents_path), :class => ('active' if params[:controller] == 'documents') %>
+        <%= content_tag :li, link_to('Sign Out', destroy_user_session_path, :method => 'delete') if user_signed_in? %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
 
 <% if content_for?(:page_banner) %>
 <div class="banner">
@@ -56,6 +56,14 @@
     <%= content_for(:page_banner) %>
   </div>
 </div>
+<% end %>
+
+<%= content_tag :div, :class => :container do %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:alert] %></div>
+  <% elsif flash[:notice] %>
+    <div class="alert alert-info" role="alert"><%= flash[:notice] %></div>
+  <% end %>
 <% end %>
 
 <%= yield %>

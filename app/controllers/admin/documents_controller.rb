@@ -1,5 +1,7 @@
 module Admin
   class DocumentsController < AdminController
+    load_and_authorize_resource
+
     respond_to :html
 
     def index

@@ -59,4 +59,17 @@ html{
     line-height: 1.4;
     margin-bottom: 0;
   }
+
+  label{
+    font-weight: normal;
+  }
+
+  a{
+    color: white;
+
+    &:hover{
+      color: white;
+    }
+  }
+
 }

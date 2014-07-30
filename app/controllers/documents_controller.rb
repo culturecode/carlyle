@@ -1,5 +1,7 @@
 class DocumentsController < ApplicationController
-  http_basic_authenticate_with :name => ENV['OWNER_USERNAME'], :password => ENV['OWNER_PASSWORD']
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied, :with => :allow_owner_login
 
   def index
     @minutes = Document.minutes.order('date DESC')
