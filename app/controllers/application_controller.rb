@@ -28,4 +28,10 @@ class ApplicationController < ActionController::Base
   def allow_owner_login(exception)
     allow_user_login(exception, new_owner_session_path)
   end
+
+  private
+
+  def current_ability
+    Ability.new(current_user, self.class.name)
+  end
 end

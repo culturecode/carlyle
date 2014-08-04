@@ -9,4 +9,11 @@ class User < ActiveRecord::Base
   end
 
   validates_inclusion_of :role, :in => ['admin', 'council', 'manager', 'owner']
+  validate :owner_role_is_read_only
+
+  private
+
+  def owner_role_is_read_only
+    errors.add(:role, "Can't change owner to another role (owner user is singleton)") if role_changed? && role_was == 'owner'
+  end
 end

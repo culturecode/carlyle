@@ -1,8 +1,8 @@
 
 <div class="container">
-  <div class="btn-toolbar" role="toolbar">
+  <div class="btn-toolbar" role="toolbar" id="page_toolbar">
     <div class="btn-group">
-      <%= link_to 'Upload Document', [:new, :admin, :document], :class => 'btn btn-default' %>
+      <%= link_to 'Upload Document', [:new, :admin, :document], :class => 'btn btn-primary' if can? :create, Document %>
     </div>
   </div>
 
@@ -16,10 +16,14 @@
       </tr>
     <% documents.each do |document| %>
       <tr>
-        <td><%= link_to document.name, [:edit, :admin, document] %></td>
+        <td>
+          <%= link_to_if can?(:edit, document), document.name, [:edit, :admin, document] do %>
+            <%= link_to document.name, [:owner, document] %>
+          <% end %>
+        </td>
         <td><%= document.description %></td>
         <td><%= document.date.to_s %></td>
-        <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' %></td>
+        <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
       </tr>
     <% end %>
   <% end %>
