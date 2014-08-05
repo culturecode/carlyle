@@ -22,4 +22,4 @@
 $(document).on('page:fetch',   function() { NProgress.start() })
 $(document).on('page:change',  function() { NProgress.done() })
 $(document).on('page:restore', function() { NProgress.remove() })
-$(document).on('page:change',  function() { $('select').select2() })
+$(document).on('page:change',  function() { $('select').select2({ allowClear:true, placeholder:'None' }) })

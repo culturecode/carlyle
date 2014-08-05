@@ -5,7 +5,7 @@
 <%= content_for :page_toolbar do %>
   <%= link_to 'Change Owners', edit_admin_suite_path(@suite, :section => 'owners'), :class => 'btn btn-primary' if can? :edit, @suite %>
   <%= link_to 'Change Tenants', edit_admin_suite_path(@suite, :section => 'tenants'), :class => 'btn btn-primary' if can? :edit, @suite %>
-  <%= link_to 'Change Lockers', edit_admin_suite_path(@suite, :section => 'lockers'), :class => 'btn btn-primary' if can? :edit, @suite %>
+  <%= link_to 'Change Lockers', edit_admin_suite_path(@suite, :section => 'lockers'), :class => 'btn btn-primary' if can? :rent, Locker %>
 <% end %>
 
 <dl class="dl-horizontal">
@@ -14,7 +14,7 @@
   <dt>Tenants</dt>
   <dd><%= record_list @suite.tenants, :namespace => :admin %></dd>
   <dt>Lockers</dt>
-  <dd>TODO</dd>
+  <dd><%= record_list @suite.lockers, :namespace => :admin %></dd>
 </dl>
 
 <%= render 'admin/notifications/table', :notifications => Crier::Notification.about(@suite) %>

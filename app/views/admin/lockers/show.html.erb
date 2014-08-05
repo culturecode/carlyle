@@ -2,6 +2,11 @@
   <h1><%= @locker %></h1>
 <% end %>
 
+<%= content_for :page_toolbar do %>
+  <%= link_to 'Rent to suite', edit_admin_locker_path(@locker, :section => 'suite'), :class => 'btn btn-primary' if can? :rent, @locker %>
+  <%= link_to 'Edit', edit_admin_locker_path(@locker, :section => 'attributes'), :class => 'btn btn-default' if can? :edit, @locker %>
+<% end %>
+
 <dl class="dl-horizontal">
   <dt>Rented to</dt>
   <dd><%= record_list @locker.suite, :namespace => :admin %></dd>

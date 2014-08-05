@@ -6,6 +6,8 @@ module Admin
 
     def show
       case @notification.subject
+      when Person, Suite, Locker
+        redirect_to [:admin, @notification.subject]
       when Document
         redirect_to [:owner, @notification.subject]
       when nil

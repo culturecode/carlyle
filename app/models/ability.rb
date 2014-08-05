@@ -14,6 +14,9 @@ class Ability
     when 'owner'
       can :read, Document, :namespace => :owner
     when 'manager'
+      can :read, Document, :namespace => :owner
+      can :read, [Person, Suite]
+      can [:read, :rent], Locker
     when 'council'
       can :read, Document, :namespace => :owner
       can :read, [Person, Suite, Locker]

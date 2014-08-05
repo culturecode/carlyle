@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include CrierNotificationHelper
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -33,10 +35,5 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     Ability.new(current_user, self.class.name)
-  end
-
-  def cry(message, options = {})
-    options.reverse_merge! :action => params[:action], :scope => self.class.name.demodulize.underscore
-    current_user.cry(message, options)
   end
 end

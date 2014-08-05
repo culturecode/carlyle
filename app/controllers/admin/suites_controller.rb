@@ -16,12 +16,25 @@ module Admin
 
     def update
       previous_tenants = @suite.tenants.to_a
-      previous_owners    = @suite.owners.to_a
+      previous_owners  = @suite.owners.to_a
+      previous_lockers = @suite.lockers.to_a
 
       @suite.update_attributes(suite_params)
 
-      suite_people_notifications(@suite, :owners, previous_owners, 'owns')
-      suite_people_notifications(@suite, :tenants, previous_tenants, 'occupies')
+      if @suite.owners.sort != previous_owners.sort
+        diff_cry(@suite, "owned by", @suite.owners.to_sentence.presence || 'nobody')
+        association_diff_cry(@suite.owners, 'owns', @suite, previous_owners)
+      end
+
+      if @suite.tenants.sort != previous_tenants.sort
+        diff_cry(@suite, "rented by", @suite.tenants.to_sentence.presence || 'nobody')
+        association_diff_cry(@suite.tenants, 'rents', @suite, previous_tenants)
+      end
+
+      if @suite.lockers.sort != previous_lockers.sort
+        diff_cry(@suite, "rents", @suite.lockers.to_sentence)
+        association_diff_cry(@suite.lockers, 'rented by', @suite, previous_lockers)
+      end
 
       respond_with(:admin, @suite)
     end
@@ -29,30 +42,9 @@ module Admin
     private
 
     def suite_params
-      params.require(:suite).permit(:owner_ids => [], :tenant_ids => [], :locker_ids => [])
-    end
-
-    # Create notifications for changes to people related to the suite
-    # creates notifications for the suite, and people whose relationship has changed
-    def suite_people_notifications(suite, association, was, verb)
-      if suite.send(association).sort != was.sort
-        suite_people_cry(suite, "#{association} changed", suite.send(association).to_sentence)
-
-        (suite.send(association) - was).each do |person|
-          person_cry(person, "now #{verb}", suite)
-        end
-        (was - suite.send(association)).each do |person|
-          person_cry(person, "no longer #{verb}", suite)
-        end
-      end
-    end
-
-    def suite_people_cry(suite, action, people)
-      cry("#{suite} #{action} to #{people}", :subject => suite, :people => people)
-    end
-
-    def person_cry(person, action, suite)
-      cry("#{person} #{action} #{suite}", :subject => person, :suite => suite.to_s)
+      permitted_params = [:owner_ids => [], :tenant_ids => []]
+      permitted_params.unshift!(:locker_ids => []) if can? :rent, Locker
+      params.require(:suite).permit(permitted_params)
     end
   end
 end
