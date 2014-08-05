@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require nprogress
+ *= require select2
+ *= require select2-bootstrap
  *= require_tree ./application
  *= require_self
  */

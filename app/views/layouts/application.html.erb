@@ -37,18 +37,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Gallery', gallery_path %></li>
-        <li><%= link_to 'Floorplans', floorplans_path %></li>
-        <li><%= link_to 'Contact', contact_path %></li>
-        <%= content_tag :li, link_to('Documents', owner_documents_path), :class => ('active' if params[:controller] == 'owner/documents') if can? :read, Document, :namespace => :owner %>
-        <%= content_tag :li, link_to('Documents', admin_documents_path), :class => ('active' if params[:controller] == 'admin/documents') if can? :read, Document, :namespace => :admin %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <%= content_tag :li, link_to('Owners', owner_root_path) unless user_signed_in? %>
-        <%= content_tag :li, link_to('Admin', admin_root_path) unless user_signed_in? %>
-        <%= content_tag :li, link_to('Sign Out', destroy_user_session_path, :method => 'delete') if user_signed_in? %>
-      </ul>
+      <%= render 'layouts/site_menu' %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -69,7 +58,13 @@
   <% end %>
 <% end %>
 
-<%= yield %>
+<%= content_tag :div, :class => :container do %>
+  <%= content_tag :div, content_for(:page_toolbar), :class => 'btn-toolbar', :role => 'toolbar', :id => 'page_toolbar' %>
+<% end if content_for? :page_toolbar %>
+
+<div class="container">
+  <%= yield %>
+</div>
 
 <footer id="site_footer">
   <div class="container">

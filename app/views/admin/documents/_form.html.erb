@@ -11,7 +11,7 @@
     </div>
   </div>
   <% else %>
-    <%= f.input :attachment, :as => 'string', :input_html => {:readonly => true} %>
+    <%= f.input :attachment, :as => 'string', :input_html => {:disabled => true} %>
   <% end %>
 
   <%= f.input :document_type, :collection => Document.valid_types %>

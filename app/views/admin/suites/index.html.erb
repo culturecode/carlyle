@@ -1,0 +1,27 @@
+<% content_for :page_banner do %>
+  <h1>Suites</h1>
+  <p>Everything you want to know about each suite</p>
+<% end %>
+
+<%= content_for :page_toolbar do %>
+  <div class="btn-group">
+    <%= link_to 'Add Suites', [:new, :admin, :suite], :class => 'btn btn-primary' if can? :create, Suite %>
+  </div>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th>Number</th>
+    <th>Owners</th>
+    <th>Tenants</th>
+    <th>Lockers</th>
+  </tr>
+<% @suites.each do |suite| %>
+  <tr>
+    <td><%= link_to suite.number, [:admin, suite] %></td>
+    <td><%= record_list suite.owners, :namespace => :admin %></td>
+    <td><%= record_list suite.tenants, :namespace => :admin %></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>

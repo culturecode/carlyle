@@ -1,0 +1,25 @@
+<ul class="nav navbar-nav">
+<% if !current_user || current_user.role == 'owner' %>
+  <li><%= link_to 'Gallery', gallery_path %></li>
+  <li><%= link_to 'Floorplans', floorplans_path %></li>
+  <li><%= link_to 'Contact', contact_path %></li>
+<% end %>
+  <%= content_tag :li, link_to('Suites', [:admin, Suite]), :class => ('active' if params[:controller] == 'admin/suites') if can? :read, Suite %>
+  <%= content_tag :li, link_to('People', [:admin, Person]), :class => ('active' if params[:controller] == 'admin/people') if can? :read, Person %>
+  <%= content_tag :li, link_to('Lockers', [:admin, Locker]), :class => ('active' if params[:controller] == 'admin/lockers') if can? :read, Locker %>
+
+<% if can? :edit, Document, :namespace => :admin %>
+  <%= content_tag :li, link_to('Documents', [:admin, Document]), :class => ('active' if params[:controller] == 'admin/documents')  %>
+<% elsif can? :read, Document, :namespace => :owner %>
+  <%= content_tag :li, link_to('Documents', [:owner, Document]), :class => ('active' if params[:controller] == 'owner/documents')  %>
+<% end %>
+
+  <%= content_tag :li, link_to('Users', admin_users_path), :class => ('active' if params[:controller] == 'admin/users') if can? :read, User %>
+  <%= content_tag :li, link_to('Activity Log', admin_notifications_path), :class => ('active' if params[:controller] == 'admin/notifications') if can? :read, Crier::Notification %>
+</ul>
+
+<ul class="nav navbar-nav navbar-right">
+  <%= content_tag :li, link_to('Owners', owner_root_path) unless user_signed_in? %>
+  <%= content_tag :li, link_to('Admin', admin_root_path) unless user_signed_in? %>
+  <%= content_tag :li, link_to('Sign Out', destroy_user_session_path, :method => 'delete') if user_signed_in? %>
+</ul>

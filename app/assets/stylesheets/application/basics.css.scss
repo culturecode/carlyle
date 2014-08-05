@@ -8,3 +8,10 @@ ol, ul{
     color: #888;
   }
 }
+
+table{
+  .squish{
+    width:1px;
+    white-space: nowrap;
+  }
+}

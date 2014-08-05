@@ -1,0 +1,9 @@
+<table class="table">
+<% notifications.order('id DESC').each do |notification| %>
+  <tr>
+    <td class="squish"><%= datestamp notification.created_at %></td>
+    <td><%= link_to notification.message, admin_notification_path(notification) %></td>
+    <td class="squish"><span class="text-muted"><%= notification.crier %></span></td>
+  </tr>
+<% end %>
+</table>

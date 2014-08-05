@@ -34,4 +34,9 @@ class ApplicationController < ActionController::Base
   def current_ability
     Ability.new(current_user, self.class.name)
   end
+
+  def cry(message, options = {})
+    options.reverse_merge! :action => params[:action], :scope => self.class.name.demodulize.underscore
+    current_user.cry(message, options)
+  end
 end

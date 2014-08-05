@@ -1,0 +1,10 @@
+<% content_for :page_banner do %>
+  <h1>Add Lockers</h1>
+<% end %>
+
+<%= simple_form_for :lockers, :url => [:admin, :lockers] do |f| %>
+  <%= f.input :numbers, :as => :text, :label => 'Locker numbers', :hint => 'Type or paste in a list of locker numbers to create' %>
+
+  <%= f.submit "Create Lockers", :class => 'btn btn-primary' %>
+  <%= f.cancel %>
+<% end %>

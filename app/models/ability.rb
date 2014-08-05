@@ -12,33 +12,42 @@ class Ability
 
     case user.role
     when 'owner'
-      can :read, Document, :namespace => [:owner]
+      can :read, Document, :namespace => :owner
     when 'manager'
-      can :read, Document, :namespace => [:admin]
     when 'council'
-      can :read, Document, :namespace => [:admin]
+      can :read, Document, :namespace => :owner
+      can :read, [Person, Suite, Locker]
     when 'admin'
       can :manage, :all
     end
 
+    # FAKE NAMESPACE SUPPORT
+
     # Since cancancan doesn't have namespaced controller support, do it here crappily
     def can(action, subject, *extra_args)
-      options = extra_args.last.is_a?(Hash) ? extra_args.last.dup : {}
+      namespace = extract_namespace(extra_args)
 
-      return if options[:namespace] && !Array.wrap(options[:namespace]).include?(@controller_namespace)
+      return if namespace && !Array.wrap(namespace).include?(@controller_namespace)
 
       super
     end
 
     def can?(action, subject, *extra_args)
-      options = extra_args.last.is_a?(Hash) ? extra_args.last.dup : {}
-      namespace = options.delete(:namespace)
+      namespace = extract_namespace(extra_args)
 
-      if namespace
-        Ability.new(@user, "#{namespace}::fakecontroller").can?(action, subject, options)
+      # Switch namespaces if we're asking about permisions from a different namespace
+      if namespace && namespace != @controller_namespace
+        Ability.new(@user, "#{namespace}::fakecontroller").can?(action, subject, *extra_args)
       else
         super
       end
+    end
+
+    def extract_namespace(extra_args)
+      options = extra_args.extract_options!
+      namespace = options.delete(:namespace)
+      extra_args << options
+      return namespace.to_sym if namespace
     end
   end
 end

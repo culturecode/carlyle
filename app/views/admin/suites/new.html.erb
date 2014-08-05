@@ -1,0 +1,10 @@
+<% content_for :page_banner do %>
+  <h1>Add suites</h1>
+<% end %>
+
+<%= simple_form_for :suites, :url => [:admin, :suites] do |f| %>
+  <%= f.input :numbers, :as => :text, :label => 'Suite numbers', :hint => 'Type or paste in a list of suite numbers to create' %>
+
+  <%= f.submit "Create Suites", :class => 'btn btn-primary' %>
+  <%= f.cancel %>
+<% end %>

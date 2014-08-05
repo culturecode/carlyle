@@ -23,6 +23,8 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
 gem 'cancancan', '~> 1.9'
 gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.3.4'
+gem 'crier', :path => '~/rrn/crier'
+gem 'select2-rails'
 
 group :test, :development do
   gem 'pry-rails'

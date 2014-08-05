@@ -1,31 +1,34 @@
+<% content_for :page_banner do %>
+  <h1>Documents</h1>
+<% end %>
 
-<div class="container">
-  <div class="btn-toolbar" role="toolbar" id="page_toolbar">
-    <div class="btn-group">
-      <%= link_to 'Upload Document', [:new, :admin, :document], :class => 'btn btn-primary' if can? :create, Document %>
-    </div>
+
+<%= content_for :page_toolbar do %>
+  <div class="btn-group">
+    <%= link_to 'Upload Document', [:new, :admin, :document], :class => 'btn btn-primary' if can? :create, Document %>
   </div>
+<% end %>
 
-  <table class="table">
-  <% @documents.group_by(&:document_type).each do |group, documents| %>
-      <tr>
-        <th><%= group %></th>
-        <th></th>
-        <th>Date</th>
-        <th></th>
-      </tr>
-    <% documents.each do |document| %>
-      <tr>
-        <td>
-          <%= link_to_if can?(:edit, document), document.name, [:edit, :admin, document] do %>
-            <%= link_to document.name, [:owner, document] %>
-          <% end %>
-        </td>
-        <td><%= document.description %></td>
-        <td><%= document.date.to_s %></td>
-        <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
-      </tr>
-    <% end %>
+
+<table class="table">
+<% @documents.group_by(&:document_type).each do |group, documents| %>
+    <tr>
+      <th><%= group %></th>
+      <th></th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  <% documents.each do |document| %>
+    <tr>
+      <td>
+        <%= link_to_if can?(:edit, document), document.name, [:edit, :admin, document] do %>
+          <%= link_to document.name, [:owner, document] %>
+        <% end %>
+      </td>
+      <td><%= document.description %></td>
+      <td><%= document.date.to_s %></td>
+      <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
+    </tr>
   <% end %>
-  </table>
-</div>
+<% end %>
+</table>

@@ -4,12 +4,23 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :rememberable,
          :recoverable, :trackable, :validatable
 
+  acts_as_crier
+
   def self.owner
     @owner ||= User.where(:role => 'owner').first_or_create!(:password => 'password', :email => 'owner@carlyle.com')
   end
 
   validates_inclusion_of :role, :in => ['admin', 'council', 'manager', 'owner']
   validate :owner_role_is_read_only
+
+  def to_s
+    case role
+    when 'owner'
+      "Owner"
+    else
+      email
+    end
+  end
 
   private
 

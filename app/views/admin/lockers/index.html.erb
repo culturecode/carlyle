@@ -1,0 +1,23 @@
+<% content_for :page_banner do %>
+  <h1>Lockers</h1>
+  <p>Which ones are used, and who is renting them</p>
+<% end %>
+
+<%= content_for :page_toolbar do %>
+  <div class="btn-group">
+    <%= link_to 'Add Lockers', [:new, :admin, :locker], :class => 'btn btn-primary' if can? :create, Locker %>
+  </div>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th>Number</th>
+    <th>Suite</th>
+  </tr>
+<% @lockers.each do |locker| %>
+  <tr>
+    <td><%= link_to locker, [:admin, locker] %></td>
+    <td><%= record_list(locker.suite, :namespace => :admin) || content_tag(:span, 'open', :class => 'text-muted') %></td>
+  </tr>
+<% end %>
+</table>

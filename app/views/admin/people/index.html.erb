@@ -1,0 +1,19 @@
+<% content_for :page_banner do %>
+  <h1>People</h1>
+  <p>Owners and tenants</p>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Owns</th>
+    <th>Rents</th>
+  </tr>
+<% @people.each do |person| %>
+  <tr>
+    <td><%= link_to person, [:admin, person] %></td>
+    <td><%= record_list person.suites_owned, :namespace => :admin %></td>
+    <td><%= record_list person.suites_rented, :namespace => :admin %></td>
+  </tr>
+<% end %>
+</table>

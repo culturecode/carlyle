@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730073653) do
+ActiveRecord::Schema.define(version: 20140804215815) do
+
+  create_table "crier_listenings", force: true do |t|
+    t.integer "notification_id"
+    t.integer "user_id"
+  end
+
+  add_index "crier_listenings", ["notification_id"], name: "index_crier_listenings_on_notification_id"
+  add_index "crier_listenings", ["user_id"], name: "index_crier_listenings_on_user_id"
+
+  create_table "crier_notifications", force: true do |t|
+    t.string   "scope"
+    t.text     "message"
+    t.integer  "crier_id"
+    t.string   "subject_type"
+    t.integer  "subject_id"
+    t.string   "action"
+    t.text     "metadata"
+    t.boolean  "private",      default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "crier_notifications", ["scope"], name: "index_crier_notifications_on_scope"
 
   create_table "documents", force: true do |t|
     t.string   "document_type"
@@ -24,6 +47,41 @@ ActiveRecord::Schema.define(version: 20140730073653) do
   end
 
   add_index "documents", ["date"], name: "index_documents_on_date"
+
+  create_table "lockers", force: true do |t|
+    t.integer  "number"
+    t.string   "location"
+    t.text     "description"
+    t.integer  "suite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.string   "postal_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suite_people", force: true do |t|
+    t.integer "person_id"
+    t.integer "suite_id"
+    t.string  "relationship"
+  end
+
+  create_table "suites", force: true do |t|
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,13 @@
+<% content_for :page_banner do %>
+  <h1>Editing <%= @suite %> <%= params[:section].titleize %></h1>
+<% end %>
+
+
+<%= simple_form_for [:admin, @suite] do |f| %>
+  <%= render 'owner_fields', :f => f if params[:section] == 'owners' %>
+  <%= render 'tenant_fields', :f => f if params[:section] == 'tenants' %>
+  <%= render 'locker_fields', :f => f if params[:section] == 'lockers' %>
+
+  <%= f.submit 'Save changes', :class => 'btn btn-primary' %>
+  <%= f.cancel %>
+<% end %>

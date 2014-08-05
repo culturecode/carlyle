@@ -1,0 +1,6 @@
+<% content_for :page_banner do %>
+  <h1><%= @user %></h1>
+  <p><%= @user.role.titleize %></p>
+<% end %>
+
+<%= render 'admin/notifications/table', :notifications => Crier::Notification.by(@user) %>

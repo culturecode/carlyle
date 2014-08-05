@@ -1,0 +1,12 @@
+<% content_for :page_banner do %>
+  <h1><%= @person.name %></h1>
+<% end %>
+
+<dl class="dl-horizontal">
+  <dt>Suites Owned</dt>
+  <dd><%= record_list @person.suites_owned, :namespace => :admin %></dd>
+  <dt>Suites Rented</dt>
+  <dd><%= record_list @person.suites_rented, :namespace => :admin %></dd>
+</dl>
+
+<%= render 'admin/notifications/table', :notifications => Crier::Notification.about(@person) %>
