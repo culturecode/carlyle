@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby "2.1.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -23,7 +23,7 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
 gem 'cancancan', '~> 1.9'
 gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.3.4'
-gem 'crier', :path => '~/rrn/crier'
+gem 'crier', :github => 'culturecode/crier'
 gem 'select2-rails'
 gem 'rails-observers'
 

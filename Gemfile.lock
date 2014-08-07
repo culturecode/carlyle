@@ -1,16 +1,17 @@
 GIT
+  remote: git://github.com/culturecode/crier.git
+  revision: 5ea26978579ad88cadebb4034c84bb8d00f098a0
+  specs:
+    crier (0.0.2)
+      rails (>= 3.2, < 4.2.0)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 122ac3b252f6d953c5e4e4856b95a63e6fd83f5a
   specs:
     simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-
-PATH
-  remote: ~/rrn/crier
-  specs:
-    crier (0.0.2)
-      rails (>= 3.2, < 4.2.0)
 
 GEM
   remote: https://rubygems.org/
