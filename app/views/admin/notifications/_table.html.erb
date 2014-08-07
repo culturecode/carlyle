@@ -3,7 +3,7 @@
   <tr>
     <td class="squish"><%= datestamp notification.created_at %></td>
     <td><%= link_to notification.message, admin_notification_path(notification) %></td>
-    <td class="squish"><span class="text-muted"><%= notification.crier %></span></td>
+    <td class="squish"><%= mail_to notification.crier, notification.crier, :target => '_blank', :class => 'text-muted' %></td>
   </tr>
 <% end %>
 </table>

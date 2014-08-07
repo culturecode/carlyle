@@ -25,6 +25,7 @@ gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.3.4'
 gem 'crier', :path => '~/rrn/crier'
 gem 'select2-rails'
+gem 'rails-observers'
 
 group :test, :development do
   gem 'pry-rails'

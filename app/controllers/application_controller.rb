@@ -1,13 +1,18 @@
 class ApplicationController < ActionController::Base
-  include CrierNotificationHelper
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   check_authorization :unless => :devise_controller?
 
+  # devise_invitable - Only admins can send invitations
+  def authenticate_inviter!
+    can?(:invite, :users) ? current_user : raise(CanCan::AccessDenied)
+  end
+
   rescue_from CanCan::AccessDenied, :with => :allow_user_login
+
+  before_action :set_observer_current_user
 
   # Since cancan insists on loading a resource in order to grant access to the page,
   # skip the action only if the user is allowed to access the page. This allows us to
@@ -35,5 +40,9 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     Ability.new(current_user, self.class.name)
+  end
+
+  def set_observer_current_user
+    CrierObserver.current_user = current_user
   end
 end
