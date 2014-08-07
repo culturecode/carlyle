@@ -23,7 +23,7 @@ module Admin
       permitted_params = []
       permitted_params.unshift(:number, :location, :description) if can? :edit, Locker
       permitted_params.unshift(:suite_id) if can? :rent, Locker
-      params.require(:locker).permit(permitted_params)
+      params.require(:lockers).permit(permitted_params)
     end
   end
 end
