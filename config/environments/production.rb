@@ -80,4 +80,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Carlyle::Application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Carlyle] ",
+      :sender_address => %{"notifier" <notifier@thecarlyleonline.com>},
+      :exception_recipients => %w{ENV['EXCEPTION_RECIPIENTS']}
+    }
 end

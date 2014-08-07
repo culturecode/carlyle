@@ -26,6 +26,7 @@ gem 'devise_invitable', '~> 1.3.4'
 gem 'crier', :github => 'culturecode/crier'
 gem 'select2-rails'
 gem 'rails-observers'
+gem 'exception_notification'
 
 group :test, :development do
   gem 'pry-rails'
