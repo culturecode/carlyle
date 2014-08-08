@@ -7,6 +7,10 @@
 <% end %>
 
 <dl class="dl-horizontal">
+  <dt>Email</dt>
+  <dd><%= @person.email %></dd>
+  <dt>Phone</dt>
+  <dd><%= @person.phone %></dd>
   <dt>Suites Owned</dt>
   <dd><%= record_list @person.suites_owned, :namespace => :admin %></dd>
   <dt>Suites Rented</dt>
