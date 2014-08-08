@@ -26,7 +26,7 @@ module Admin
     private
 
     def suite_params
-      permitted_params = [:owner_ids => [], :tenant_ids => []]
+      permitted_params = [:owner_ids => [], :owners_attributes => [:name, :email, :phone, :_destroy], :tenant_ids => [], :tenants_attributes => {}]
       permitted_params.unshift(:locker_ids => []) if can? :rent, Locker
       params.fetch(:suite, {}).permit(permitted_params)
     end

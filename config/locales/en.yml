@@ -24,3 +24,9 @@ en:
     attributes:
       suite:
         lockers: 'Rented Lockers'
+
+  simple_form:
+    labels:
+      suite:
+        owners: 'Select owners from existing people'
+        tenants: 'Select Tenants'

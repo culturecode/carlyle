@@ -3,7 +3,8 @@
 <% end %>
 
 
-<%= simple_form_for [:admin, @suite] do |f| %>
+<%= simple_nested_form_for [:admin, @suite] do |f| %>
+  <%= hidden_field_tag :section, params[:section] %>
   <%= render 'owner_fields', :f => f if params[:section] == 'owners' %>
   <%= render 'tenant_fields', :f => f if params[:section] == 'tenants' %>
   <%= render 'locker_fields', :f => f if params[:section] == 'lockers' %>

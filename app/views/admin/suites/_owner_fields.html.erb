@@ -1,1 +1,14 @@
 <%= f.association :owners %>
+
+<p><strong>Add new people as owners</strong></p>
+<%= f.fields_for :owners do |g| %>
+  <% next unless g.object.new_record? || g.object.errors.present? %>
+  <div class="nested_fields">
+    <div class="row">
+      <div class='col-md-10'><%= render 'admin/people/fields', :f => g %></div>
+      <div class='col-md-2'><%= g.link_to_remove "Remove", :class => 'btn btn-danger pull-right' %></div>
+    </div>
+  </div>
+<% end %>
+
+<%= f.link_to_add "Add a New Person", :owners, :class => 'btn btn-info' %>

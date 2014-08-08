@@ -3,8 +3,8 @@
 <% end %>
 
 <%= content_for :page_toolbar do %>
-  <%= link_to 'Rent to suite', edit_admin_locker_path(@locker, :section => 'suite'), :class => 'btn btn-primary' if can? :rent, @locker %>
-  <%= link_to 'Edit', edit_admin_locker_path(@locker, :section => 'attributes'), :class => 'btn btn-default' if can? :edit, @locker %>
+  <%= link_to 'Rent to Suite', rent_admin_locker_path(@locker), :class => 'btn btn-primary' if can? :rent, @locker %>
+  <%= link_to 'Edit Locker', edit_admin_locker_path(@locker, :section => 'attributes'), :class => 'btn btn-default' if can? :edit, @locker %>
 <% end %>
 
 <dl class="dl-horizontal">

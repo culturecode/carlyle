@@ -17,6 +17,7 @@
 //= require bootstrap/transition
 //= require bootstrap/collapse
 //= require select2
+//= require jquery_nested_form
 //= require_tree .
 
 $(document).on('page:fetch',   function() { NProgress.start() })

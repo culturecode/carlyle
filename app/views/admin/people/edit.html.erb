@@ -1,0 +1,10 @@
+<% content_for :page_banner do %>
+  <h1>Editing <%= @person %></h1>
+<% end %>
+
+<%= simple_form_for [:admin, @person] do |f| %>
+  <%= render 'fields', :f => f %>
+
+  <%= f.submit 'Save changes', :class => 'btn btn-primary' %>
+  <%= f.cancel %>
+<% end %>

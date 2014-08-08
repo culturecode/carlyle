@@ -17,18 +17,15 @@ module Admin
       respond_with(:admin, @document, :location => [:admin, :documents])
     end
 
-    def edit
-      @document = Document.find(params[:id])
-    end
+    def edit; end
 
     def update
-      @document = Document.find(params[:id])
       @document.update_attributes(document_params)
       respond_with(:admin, @document, :location => [:admin, :documents])
     end
 
     def destroy
-      Document.find(params[:id]).destroy
+      @document.destroy
       redirect_to [:admin, :documents], :notice => 'Document deleted'
     end
 

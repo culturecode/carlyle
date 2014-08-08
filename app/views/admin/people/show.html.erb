@@ -2,6 +2,10 @@
   <h1><%= @person.name %></h1>
 <% end %>
 
+<%= content_for :page_toolbar do %>
+  <%= link_to 'Edit Person', [:edit, :admin, @person], :class => 'btn btn-primary' if can? :edit, @person %>
+<% end %>
+
 <dl class="dl-horizontal">
   <dt>Suites Owned</dt>
   <dd><%= record_list @person.suites_owned, :namespace => :admin %></dd>

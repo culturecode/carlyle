@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :documents
     resources :people
     resources :suites
-    resources :lockers
+    resources :lockers do
+      get :rent, :on => :member
+    end
     resources :notifications, :only => [:index, :show]
     resources :users, :only => [:index, :show]
   end

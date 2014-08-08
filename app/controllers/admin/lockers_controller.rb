@@ -12,6 +12,9 @@ module Admin
       redirect_to [:admin, :lockers], :notice => "#{numbers.count} #{numbers.count == 1 ? 'Locker' : 'Lockers'} created"
     end
 
+    def edit; end
+    def rent; end
+
     def update
       @locker.update_attributes(locker_params)
       respond_with(:admin, @locker)
@@ -23,7 +26,7 @@ module Admin
       permitted_params = []
       permitted_params.unshift(:number, :location, :description) if can? :edit, Locker
       permitted_params.unshift(:suite_id) if can? :rent, Locker
-      params.require(:lockers).permit(permitted_params)
+      params.require(:locker).permit(permitted_params)
     end
   end
 end

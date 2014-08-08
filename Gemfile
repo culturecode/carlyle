@@ -27,6 +27,8 @@ gem 'crier', :github => 'culturecode/crier'
 gem 'select2-rails'
 gem 'rails-observers'
 gem 'exception_notification'
+gem 'nested_form'
+
 
 group :test, :development do
   gem 'pry-rails'
