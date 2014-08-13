@@ -1,7 +1,7 @@
 <ol class='unstyled'>
   <% documents.each do |document| %>
   <li>
-    <%= link_to document.name, document, :target => '_blank' %>
+    <%= link_to document.name, [:owner, document], :target => '_blank' %>
     <%= simple_format document.description if document.description? %>
   </li>
   <% end %>

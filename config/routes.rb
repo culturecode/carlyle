@@ -22,8 +22,6 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
-  resources :documents, :only => [:index, :show]
-
 
   # GENERIC PAGES
 

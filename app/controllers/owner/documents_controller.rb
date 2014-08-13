@@ -13,7 +13,7 @@ module Owner
     end
 
     def show
-      redirect_to Document.find(params[:id]).attachment.url
+      redirect_to @document.attachment.url
     end
   end
 end
