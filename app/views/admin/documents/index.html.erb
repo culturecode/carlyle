@@ -26,7 +26,7 @@
         <% end %>
       </td>
       <td><%= document.description %></td>
-      <td><%= document.date.to_s %></td>
+      <td class="squish"><%= document.date.to_s %></td>
       <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
     </tr>
   <% end %>

@@ -12,6 +12,6 @@ class DocumentObserver < CrierObserver
   end
 
   def document_cry(document, action)
-    current_user.cry("#{document.document_type.singularize.titleize} #{action} \"#{document.name}\"", :subject => document)
+    current_user.cry("#{document.name} #{action}", :subject => document)
   end
 end
