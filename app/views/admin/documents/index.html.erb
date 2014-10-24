@@ -13,20 +13,20 @@
 <table class="table">
 <% @documents.group_by(&:document_type).each do |group, documents| %>
     <tr>
+      <th>Date</th>
       <th><%= group %></th>
       <th></th>
-      <th>Date</th>
       <th></th>
     </tr>
   <% documents.each do |document| %>
     <tr>
+      <td class="squish"><%= document.date.strftime('%b %e, %Y') %></td>
       <td>
         <%= link_to_if can?(:edit, document), document.name, [:edit, :admin, document] do %>
           <%= link_to document.name, [:owner, document] %>
         <% end %>
       </td>
       <td><%= document.description %></td>
-      <td class="squish"><%= document.date.to_s %></td>
       <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
     </tr>
   <% end %>
