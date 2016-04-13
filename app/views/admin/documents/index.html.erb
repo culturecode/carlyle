@@ -17,6 +17,7 @@
       <th><%= group %></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   <% documents.each do |document| %>
     <tr>
@@ -27,6 +28,7 @@
         <% end %>
       </td>
       <td><%= document.description %></td>
+      <td><%= link_to 'View', [:admin, document] %></td>
       <td><%= link_to 'Delete', [:admin, document], :method => :delete, 'data-confirm' => 'Are you sure?' if can? :delete, document %></td>
     </tr>
   <% end %>
