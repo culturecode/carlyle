@@ -20,7 +20,7 @@ module Admin
     end
 
     def show
-      send_file open(@document.attachment.url), :filename => @document.public_file_name
+      send_file open(@document.attachment.url), :filename => @document.public_file_name, :disposition => :inline
     end
 
     def edit; end
