@@ -13,4 +13,12 @@ class Document < ActiveRecord::Base
   def name
     self['name'].presence || self['attachment']
   end
+
+  def public_file_name
+    if self['name']
+      "#{self['name']} - #{date.strftime('%Y-%m-%e')}#{File.extname(self['attachment'])}"
+    else
+      self['attachment']
+    end
+  end
 end

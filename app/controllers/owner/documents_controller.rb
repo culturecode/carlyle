@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Owner
   class DocumentsController < ApplicationController
     load_and_authorize_resource
@@ -13,7 +15,7 @@ module Owner
     end
 
     def show
-      redirect_to @document.attachment.url
+      send_file open(@document.attachment.url), :filename => @document.public_file_name
     end
   end
 end

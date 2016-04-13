@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Admin
   class DocumentsController < AdminController
     load_and_authorize_resource
@@ -15,6 +17,10 @@ module Admin
     def create
       @document = Document.create(document_params)
       respond_with(:admin, @document, :location => [:admin, :documents])
+    end
+
+    def show
+      send_file open(@document.attachment.url), :filename => @document.public_file_name
     end
 
     def edit; end
@@ -36,4 +42,3 @@ module Admin
     end
   end
 end
-
