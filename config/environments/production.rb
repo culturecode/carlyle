@@ -87,4 +87,6 @@ Rails.application.configure do
       :sender_address => %{"notifier" <notifier@thecarlyleonline.com>},
       :exception_recipients => %w{ENV['EXCEPTION_RECIPIENTS']}
     }
+
+  config.x.carrierwave.storage = :fog
 end
