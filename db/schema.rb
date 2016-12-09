@@ -13,15 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140804215815) do
 
-  create_table "crier_listenings", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "crier_listenings", force: :cascade do |t|
     t.integer "notification_id"
     t.integer "user_id"
   end
 
-  add_index "crier_listenings", ["notification_id"], name: "index_crier_listenings_on_notification_id"
-  add_index "crier_listenings", ["user_id"], name: "index_crier_listenings_on_user_id"
+  add_index "crier_listenings", ["notification_id"], name: "index_crier_listenings_on_notification_id", using: :btree
+  add_index "crier_listenings", ["user_id"], name: "index_crier_listenings_on_user_id", using: :btree
 
-  create_table "crier_notifications", force: true do |t|
+  create_table "crier_notifications", force: :cascade do |t|
     t.string   "scope"
     t.text     "message"
     t.integer  "crier_id"
@@ -34,9 +37,9 @@ ActiveRecord::Schema.define(version: 20140804215815) do
     t.datetime "updated_at"
   end
 
-  add_index "crier_notifications", ["scope"], name: "index_crier_notifications_on_scope"
+  add_index "crier_notifications", ["scope"], name: "index_crier_notifications_on_scope", using: :btree
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "document_type"
     t.string   "attachment"
     t.datetime "created_at"
@@ -46,9 +49,9 @@ ActiveRecord::Schema.define(version: 20140804215815) do
     t.date     "date"
   end
 
-  add_index "documents", ["date"], name: "index_documents_on_date"
+  add_index "documents", ["date"], name: "index_documents_on_date", using: :btree
 
-  create_table "lockers", force: true do |t|
+  create_table "lockers", force: :cascade do |t|
     t.integer  "number"
     t.string   "location"
     t.text     "description"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 20140804215815) do
     t.datetime "updated_at"
   end
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "phone"
@@ -71,19 +74,19 @@ ActiveRecord::Schema.define(version: 20140804215815) do
     t.datetime "updated_at"
   end
 
-  create_table "suite_people", force: true do |t|
+  create_table "suite_people", force: :cascade do |t|
     t.integer "person_id"
     t.integer "suite_id"
     t.string  "relationship"
   end
 
-  create_table "suites", force: true do |t|
+  create_table "suites", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
@@ -107,10 +110,10 @@ ActiveRecord::Schema.define(version: 20140804215815) do
     t.string   "role"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
